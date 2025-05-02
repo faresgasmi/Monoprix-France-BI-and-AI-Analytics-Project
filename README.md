@@ -40,7 +40,7 @@ Le projet comprend :
 - <b>Power BI</b> pour la visualisation des données et la création des dashboards interactifs.
 - <b>Machine Learning</b> (scikit-learn, TensorFlow, etc.) pour les modèles de prédiction et de classification.
 - <b>Natural Language Processing (NLP)</b> pour la création du chatbot intelligent.
-- <b>Azure SQL Database</b> pour le stockage structuré des données.
+- <b> SQL Server Database</b> pour le stockage structuré des données.
 - <b>ETL Tools</b> (SQL, Python, etc.) pour le processus de transformation des données.
 - <b>Streamlit</b> pour le déploiement de l’application et l'interface utilisateur.
 
