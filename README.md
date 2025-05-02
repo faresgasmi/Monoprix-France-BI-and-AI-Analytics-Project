@@ -40,10 +40,38 @@ Le projet comprend :
 - <b>Power BI</b> pour la visualisation des données et la création des dashboards interactifs.
 - <b>Machine Learning</b> (scikit-learn, TensorFlow, etc.) pour les modèles de prédiction et de classification.
 - <b>Natural Language Processing (NLP)</b> pour la création du chatbot intelligent.
-- <b> SQL Server Database</b> pour le stockage structuré des données.
+- <b>Azure SQL Database</b> pour le stockage structuré des données.
 - <b>ETL Tools</b> (SQL, Python, etc.) pour le processus de transformation des données.
 - <b>Streamlit</b> pour le déploiement de l’application et l'interface utilisateur.
 
 ## <h2>📊 Data Sources</h2>
 - <b>Sources de données internes de Monoprix</b>: Données financières, fournisseurs, ventes, etc.
 - <b>Processus de collecte des données</b>: Les données sont extraites, nettoyées et intégrées dans la <i>staging area</i> avant d’être transformées et chargées dans la <i>data warehouse</i>.
+
+## <h2>📁 Project Structure</h，拉>
+<pre>
+├── Monoprix_image.jpg                       # Illustration utilisée dans le README ou l’app
+├── app.py                                   # Application Streamlit (interface utilisateur)
+├── avis_monoprix.csv                        # Données clients ou feedbacks
+├── budget_data.csv                          # Données budgétaires utilisées pour les modèles
+├── *.pkl (modèles ML & scalers)             # Modèles IA/ML pré-entraînés et objets de normalisation
+├── README.md                                # Documentation du projet
+</pre>
+
+## <h2>📸 Screenshots</h2>
+
+### <h3>🔍 Page de Déploiement – Modèles Machine Learning</h3>
+Cette capture d’écran illustre la page principale de l’application Streamlit, dédiée au déploiement des modèles d’intelligence artificielle développés pour Monoprix France.
+
+✅ <b>Modèles disponibles sur l’interface</b> :
+- 🎯 <b>Prédiction de l’équité financière des clients</b> (equity_model.pkl)
+- 👥 <b>Classification des clients selon leurs achats</b> (client_classe_model.pkl)
+- 🧠 <b>Segmentation comportementale des clients</b> (segmentation_client_model.pkl)
+- 📊 <b>Prédiction budgétaire avec des modèles de séries temporelles</b> (predection_budget_serie_temporaire.pkl)
+- 🛡️ <b>Détection de fraudes dans les transactions</b> (detection_fraud_model.pkl)
+- ⏱️ <b>Détection des délais de résolution anormaux</b> (detection_resolution_disputes_modele.pkl)
+
+### <h3>💬 Chatbot – Analyse des Avis Clients</h3>
+- Implémentation d’un chatbot basé sur des modèles NLP pour analyser les avis clients et répondre aux questions des utilisateurs en temps réel.
+- ![Image](https://github.com/user-attachments/assets/2f2a6868-ed90-4950-a05d-1318cc986268)
+- 
