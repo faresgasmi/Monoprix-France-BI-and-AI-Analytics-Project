@@ -48,7 +48,7 @@ Le projet comprend :
 - <b>Sources de données internes de Monoprix</b>: Données financières, fournisseurs, ventes, etc.
 - <b>Processus de collecte des données</b>: Les données sont extraites, nettoyées et intégrées dans la <i>staging area</i> avant d’être transformées et chargées dans la <i>data warehouse</i>.
 
-## <h2>📁 Project Structure</h，拉>
+## <h2>📁 Project Structure</h2>
 <pre>
 ├── Monoprix_image.jpg                       # Illustration utilisée dans le README ou l’app
 ├── app.py                                   # Application Streamlit (interface utilisateur)
@@ -68,10 +68,53 @@ Cette capture d’écran illustre la page principale de l’application Streamli
 - 👥 <b>Classification des clients selon leurs achats</b> (client_classe_model.pkl)
 - 🧠 <b>Segmentation comportementale des clients</b> (segmentation_client_model.pkl)
 - 📊 <b>Prédiction budgétaire avec des modèles de séries temporelles</b> (predection_budget_serie_temporaire.pkl)
-- 🛡️ <b>Détection de fraudes dans les transactions</b> (detection_fraud_model.pkl)
+- 🛡️ <b>Détection de fraudes dans Estamos transactions</b> (detection_fraud_model.pkl)
 - ⏱️ <b>Détection des délais de résolution anormaux</b> (detection_resolution_disputes_modele.pkl)
 
 ### <h3>💬 Chatbot – Analyse des Avis Clients</h3>
 - Implémentation d’un chatbot basé sur des modèles NLP pour analyser les avis clients et répondre aux questions des utilisateurs en temps réel.
-- ![Image](https://github.com/user-attachments/assets/2f2a6868-ed90-4950-a05d-1318cc986268)
-- 
+
+### <h3>📊 Power BI Dashboard</h3>
+
+#### <h4>💼 Finance Management</h4>
+- La capture d’écran montre un tableau de bord de gestion financière avec des indicateurs clés tels que :
+  - <b>Ventes totales</b>: 35K €
+  - <b>Bénéfices</b>: 20K €
+  - <b>Capitaux propres</b>: 23,1M €
+  - <b>Budget</b>: 6M €
+- Visualisations incluant :
+  - Un graphique des <b>top 10 des ventes par magasin</b>.
+  - Un graphique des <b>tendances des ventes</b>.
+- Utilisation de formules DAX pour des analyses comparatives, par exemple :
+  - Comparaison des ventes totales avec l’année et le mois précédents, en utilisant les fonctions <b>PREVIOUSMONTH</b> et <b>SAMEPERIODLASTYEAR</b> pour calculer les variations.
+
+#### <h4>🏭 Supplier Management</h4>
+- La capture d’écran montre un tableau de bord "<i>Supplier Manager</i>" avec des indicateurs clés tels que :
+  - <b>Nombre de litiges ouverts</b>: 12
+  - <b>Total des achats</b>: 48,2K €
+- Visualisations incluant :
+  - Un graphique des <b>soldes impayés par fournisseur</b>.
+  - Un graphique des <b>ventes totales par fournisseur</b>.
+- Utilisation de formules DAX pour des analyses comparatives, par exemple :
+  - Comparaison des soldes impayés avec l’année et le mois précédents, en utilisant les fonctions <b>PREVIOUSMONTH</b> et <b>SAMEPERIODLASTYEAR</b> pour calculer les variations.
+
+#### <h4>👥 Customer Management</h4>
+- La capture d’écran présente un tableau de bord dédié à la gestion des clients, mettant en avant :
+
+  **Indicateurs clés** :
+  - <b>Nombre de clients actifs</b>: Non précisé (ex. : 250)
+  - <b>Chiffre d’affaires total</b>: 35K € (affiché dans le graphique des revenus annuels)
+  - <b>Nombre de transactions</b>: 175 (maximum en 2024)
+
+  **Visualisations principales** :
+  - <b>Classement des clients par ventes</b> :
+    - Top 10 clients (ex. : Client 1372 avec 1 000 €, Client 492 avec 500 €).
+  - <b>Comparaison annuelle</b> :
+    - Revenus clients (de 0 à 35K €) vs. nombre de transactions (de 0 à 175), avec données pour 2020, 2022, 2024.
+  - <b>Évaluation des auteurs/clients</b> :
+    - Tableau de notes (Rating) et catégories (ex. : Excellent, Correct).
+
+  **Analyse avancée (DAX)** :
+  - Des formules comme <b>PREVIOUSMONTH</b> ou <b>SAMEPERIODLASTYEAR</b> pourraient être utilisées pour :
+    - Comparer les ventes mensuelles ou annuelles avec les périodes précédentes.
+    - Calculer des tendances (ex. : croissance des transactions entre 2020 et 2024).
