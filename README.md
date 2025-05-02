@@ -73,6 +73,7 @@ Cette capture d’écran illustre la page principale de l’application Streamli
 
 ### <h3>💬 Chatbot – Analyse des Avis Clients</h3>
 - Implémentation d’un chatbot basé sur des modèles NLP pour analyser les avis clients et répondre aux questions des utilisateurs en temps réel.
+- ![Image](https://github.com/user-attachments/assets/0a9a9260-01f9-4842-9fe4-8e25ec77aba2)
 
 ### <h3>📊 Power BI Dashboard</h3>
 
@@ -87,6 +88,7 @@ Cette capture d’écran illustre la page principale de l’application Streamli
   - Un graphique des <b>tendances des ventes</b>.
 - Utilisation de formules DAX pour des analyses comparatives, par exemple :
   - Comparaison des ventes totales avec l’année et le mois précédents, en utilisant les fonctions <b>PREVIOUSMONTH</b> et <b>SAMEPERIODLASTYEAR</b> pour calculer les variations.
+  - ![Image](https://github.com/user-attachments/assets/e3af6be4-8c83-4f0a-b1ad-662699235da9)
 
 #### <h4>🏭 Supplier Management</h4>
 - La capture d’écran montre un tableau de bord "<i>Supplier Manager</i>" avec des indicateurs clés tels que :
@@ -97,6 +99,7 @@ Cette capture d’écran illustre la page principale de l’application Streamli
   - Un graphique des <b>ventes totales par fournisseur</b>.
 - Utilisation de formules DAX pour des analyses comparatives, par exemple :
   - Comparaison des soldes impayés avec l’année et le mois précédents, en utilisant les fonctions <b>PREVIOUSMONTH</b> et <b>SAMEPERIODLASTYEAR</b> pour calculer les variations.
+  - ![Image](https://github.com/user-attachments/assets/dbc7df83-022b-4ce1-bd9c-f10ec9201994)
 
 #### <h4>👥 Customer Management</h4>
 - La capture d’écran présente un tableau de bord dédié à la gestion des clients, mettant en avant :
@@ -118,3 +121,4 @@ Cette capture d’écran illustre la page principale de l’application Streamli
   - Des formules comme <b>PREVIOUSMONTH</b> ou <b>SAMEPERIODLASTYEAR</b> pourraient être utilisées pour :
     - Comparer les ventes mensuelles ou annuelles avec les périodes précédentes.
     - Calculer des tendances (ex. : croissance des transactions entre 2020 et 2024).
+    - ![Image](https://github.com/user-attachments/assets/f1c309e7-6e6c-4544-91bf-fd4c4cdc555f)
