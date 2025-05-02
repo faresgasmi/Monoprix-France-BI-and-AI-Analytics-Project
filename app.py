@@ -10,14 +10,14 @@ from sentence_transformers import SentenceTransformer, util
 from transformers import BertTokenizer, BertForSequenceClassification
 
 # Chargement des modèles et du scaler
-kmeans = joblib.load('kmeans_model.pkl')
-scaler = joblib.load('scaler.pkl')
+kmeans = joblib.load('segmentation_client_model.pkl')
+scaler = joblib.load('scaler_segmentation.pkl')
 regression_model = joblib.load('equity_model.pkl')
-scaler_regression = joblib.load('scaler_regression.pkl')
-rf_model = joblib.load('random_forest_model.pkl')
-scaler_rf = joblib.load('scalerRandom.pkl')
-fraud_model = joblib.load('isolation_forest_model.pkl')
-dispute_model = joblib.load('newRetard.pkl')  # Updated to correct model
+scaler_regression = joblib.load('scaler_equity.pkl')
+rf_model = joblib.load('client_classe_model.pkl')
+scaler_rf = joblib.load('scaler_client_classe.pkl')
+fraud_model = joblib.load('detection_fraud_model.pkl')
+dispute_model = joblib.load('detection_resolution_disputes_modele.pkl')
 
 # Chargement des modèles pour le chatbot
 @st.cache_resource
@@ -68,7 +68,7 @@ def set_background(image_file):
 # Page principale
 def main_page():
     # Appliquer l'image de fond uniquement pour la page principale
-    background_image = set_background("new.jpg")
+    background_image = set_background("Monoprix_image.jpg")
 
     st.markdown(f"""
         <style>
@@ -144,7 +144,7 @@ def models_page():
             "🔍 Segmentation des clients avec KMeans",
             "📊 Prédiction de l'Equity",
             "📈 Prédiction du Budget avec ARIMA",
-            "🌲 Prédiction de la Classe avec Random Forest",
+            "🌲 Prédiction de la AmountPaid de supplier avec Random Forest",
             "🤖 Chatbot Monoprix - Avis Clients",
             "🕵️ Détection de Fraude - Transactions",
             "⏰ Détection du Délai de Résolution de la Dispute"
@@ -161,6 +161,13 @@ def models_page():
         return avis, embeddings
 
     avis, avis_embeddings = load_data()
+
+    # Dictionnaire pour les descriptions des clusters
+    cluster_descriptions = {
+        0: "Client régulier",
+        1: "Client en gros",
+        2: "Client occasionnel"
+    }
 
     # Chatbot
     if selected_model == "🤖 Chatbot Monoprix - Avis Clients":
@@ -183,8 +190,9 @@ def models_page():
         if st.button("Prédire le cluster", key="kmeans_predict"):
             data = np.array([[amount, total_price]])
             data_scaled = scaler.transform(data)
-            cluster = kmeans.predict(data_scaled)
-            st.markdown(f'<p class="result">Le client appartient au cluster : {cluster[0]}</p>', unsafe_allow_html=True)
+            cluster = kmeans.predict(data_scaled)[0]
+            cluster_description = cluster_descriptions.get(cluster, "Cluster inconnu")
+            st.markdown(f'<p class="result">Le client appartient au cluster : {cluster} ({cluster_description})</p>', unsafe_allow_html=True)
 
     # Régression Equity
     elif selected_model == "📊 Prédiction de l'Equity":
@@ -201,7 +209,7 @@ def models_page():
     elif selected_model == "📈 Prédiction du Budget avec ARIMA":
         st.markdown('<p class="header">Prédiction du Budget avec ARIMA</p>', unsafe_allow_html=True)
         try:
-            df_budget = pd.read_csv("data.csv", skiprows=[1], parse_dates=["StatementDate"])
+            df_budget = pd.read_csv("budget_data.csv", skiprows=[1], parse_dates=["StatementDate"])
             df_budget = df_budget.sort_values("StatementDate")
             df_budget.set_index("StatementDate", inplace=True)
             df_budget["Budget"] = df_budget["Budget"].str.replace(",", ".").astype(float)
@@ -210,7 +218,7 @@ def models_page():
             df_budget = None
 
         try:
-            arima_model = joblib.load("arima_model.pkl")
+            arima_model = joblib.load("predection_budget_serie_temporaire.pkl")
         except Exception as e:
             st.error("❌ Erreur chargement modèle ARIMA : " + str(e))
             arima_model = None
@@ -232,15 +240,41 @@ def models_page():
             st.markdown(f'<p class="result">✅ Prévision pour les {n_periods} mois à venir terminée.</p>', unsafe_allow_html=True)
 
     # Random Forest
-    elif selected_model == "🌲 Prédiction de la Classe avec Random Forest":
-        st.markdown('<p class="header">Prédiction de la Classe avec Random Forest</p>', unsafe_allow_html=True)
+    elif selected_model == "🌲 Prédiction de la AmountPaid de supplier avec Random Forest":
+        st.markdown('<p class="header">Prédiction de la AmountPaid de supplier avec Random Forest</p>', unsafe_allow_html=True)
         amount_paid = st.number_input("Montant payé (Amount Paid)", min_value=0.0, key="rf_amount_paid")
         total_sales = st.number_input("Total des ventes (Total Sales)", min_value=0.0, key="rf_total_sales")
         if st.button("Prédire la classe", key="rf_predict"):
             data_rf = np.array([[amount_paid, total_sales]])
             data_scaled_rf = scaler_rf.transform(data_rf)
-            class_prediction = rf_model.predict(data_scaled_rf)
-            st.markdown(f'<p class="result">Classe prédite : {class_prediction[0]}</p>', unsafe_allow_html=True)
+            class_prediction = rf_model.predict(data_scaled_rf)[0]
+            st.markdown(f'<p class="model-info">Prédiction brute du modèle : {class_prediction}</p>', unsafe_allow_html=True)
+            try:
+                # Convertir la prédiction en float pour la comparaison
+                class_prediction_numeric = float(class_prediction)
+                # Déterminer le type de classe basé sur amount_paid
+                if class_prediction_numeric < 100000:
+                    class_type = "Faible"
+                elif class_prediction_numeric <= 300000:
+                    class_type = "Moyenne"
+                else:
+                    class_type = "Élevée"
+                st.markdown(f'<p class="result">Montant payé prédit : {class_prediction_numeric:.2f} ({class_type})</p>', unsafe_allow_html=True)
+            except ValueError:
+                # Fallback si la prédiction est une étiquette catégorique
+                class_prediction_str = str(class_prediction).lower()
+                # Mappage des étiquettes catégoriques aux types attendus (à ajuster selon les étiquettes réelles du modèle)
+                categorical_mapping = {
+                    "faible": (50000, "Faible"),  # Valeur indicative pour Faible
+                    "moyenne": (200000, "Moyenne"),  # Valeur indicative pour Moyenne
+                    "élevée": (400000, "Élevée"),  # Valeur indicative pour Élevée
+                    "elevée": (400000, "Élevée")  # Pour gérer les variations d'accent
+                }
+                if class_prediction_str in categorical_mapping:
+                    numeric_value, class_type = categorical_mapping[class_prediction_str]
+                    st.markdown(f'<p class="result">Montant payé prédit : {numeric_value:.2f} ({class_type})</p>', unsafe_allow_html=True)
+                else:
+                    st.error(f"❌ Erreur : La prédiction '{class_prediction}' n'est pas un nombre valide ni une étiquette reconnue. Veuillez vérifier le modèle ou les données d'entrée.")
 
     # Détection de fraude
     elif selected_model == "🕵️ Détection de Fraude - Transactions":
