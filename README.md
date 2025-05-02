@@ -162,6 +162,7 @@ It also demonstrates my ability to:
 If you found this project valuable or inspiring, feel free to reach out!
 
 - 📧 **Email**: faresguesmi815@gmail.com
+- 📩 **My LinkedIn Account**: <a href="https://www.linkedin.com/in/fares-guesmi-6aa849262/">Fares Guesmi</a>
 
 ## <h2>⭐ Give It a Star!</h2>
 If you like this project, don't forget to star this repository! ⭐
