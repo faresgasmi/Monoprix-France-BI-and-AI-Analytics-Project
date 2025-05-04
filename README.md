@@ -117,10 +117,7 @@ This screenshot illustrates the main page of the Streamlit application, dedicate
   - <b>Customer/author evaluation</b>:
     - Rating table and categories (e.g., Excellent, Correct).
 
-  **Advanced Analysis (DAX)**:
-  - Formulas such as <b>PREVIOUSMONTH</b> or <b>SAMEPERIODLASTYEAR</b> could be used to:
-    - Compare monthly or annual sales with previous periods.
-    - Calculate trends (e.g., transaction growth between 2020 and 2024).
+ 
   - ![Image](https://github.com/user-attachments/assets/f1c309e7-6e6c-4544-91bf-fd4c4cdc555f)
 
 ## <h2>🛒 How This Helps Monoprix France</h2>
